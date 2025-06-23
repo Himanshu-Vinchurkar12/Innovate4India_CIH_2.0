@@ -28,6 +28,7 @@ import com.example.mindpulse.presentation.screens.DialogBox
 import com.example.shoppingapp.presentation.screens.LogInScreen
 import com.example.mindpulse.presentation.screens.ProfileScreen
 import com.example.mindpulse.presentation.screens.SignUpScreen
+import com.example.mindpulse.presentation.screens.utils.HomeScreen
 import com.example.shoppingapp.presentation.screens.utils.DialogBoxForLogOut
 import com.example.mindpulse.presentation.viewmodel.MyViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -91,7 +92,7 @@ fun Nav(viewModel: MyViewModel = hiltViewModel(), firebaseAuth: FirebaseAuth) {
                                     0 -> {
                                         navController.navigate(Routes.HomeScreenRoutes)
                                         {
-                                            popUpTo(SubNavigation.HomeScreenRoutes) {
+                                            popUpTo(Routes.HomeScreenRoutes) {
                                                 inclusive = true
                                             }
                                         }
@@ -100,7 +101,7 @@ fun Nav(viewModel: MyViewModel = hiltViewModel(), firebaseAuth: FirebaseAuth) {
                                     1 -> {
                                         navController.navigate(Routes.WishListScreenRoutes)
                                         {
-                                            popUpTo(SubNavigation.HomeScreenRoutes) {
+                                            popUpTo(Routes.HomeScreenRoutes) {
                                                 inclusive = true
                                             }
                                         }
@@ -109,7 +110,7 @@ fun Nav(viewModel: MyViewModel = hiltViewModel(), firebaseAuth: FirebaseAuth) {
                                     2 -> {
                                         navController.navigate(Routes.CartScreenRoutes)
                                         {
-                                            popUpTo(SubNavigation.HomeScreenRoutes) {
+                                            popUpTo(Routes.HomeScreenRoutes) {
                                                 inclusive = true
                                             }
                                         }
@@ -118,7 +119,7 @@ fun Nav(viewModel: MyViewModel = hiltViewModel(), firebaseAuth: FirebaseAuth) {
                                     3 -> {
                                         navController.navigate(Routes.ProfileScreenRoutes)
                                         {
-                                            popUpTo(SubNavigation.HomeScreenRoutes) {
+                                            popUpTo(Routes.HomeScreenRoutes) {
                                                 inclusive = true
                                             }
                                         }
@@ -158,7 +159,13 @@ fun Nav(viewModel: MyViewModel = hiltViewModel(), firebaseAuth: FirebaseAuth) {
                     SignUpScreen(
                         navController = navController
                     )
+                }
 
+                composable<Routes.HomeScreenRoutes>{
+                    showBottomBar.value = true
+                    HomeScreen(
+                        navController = navController
+                    )
                 }
             }
 

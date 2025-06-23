@@ -1,6 +1,7 @@
 package com.example.mindpulse.presentation.screens
 
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -28,6 +29,7 @@ import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -88,6 +90,7 @@ fun SignUpScreen(viewModel: MyViewModel = hiltViewModel(), navController: NavCon
         createUserState.value.isSuccess != null -> {
 
             Toast.makeText(context, "User Register", Toast.LENGTH_SHORT).show()
+            Log.d("TAG","data : ${createUserState.value.isSuccess}")
 
         }
     }
@@ -115,6 +118,7 @@ fun SignUpScreen(viewModel: MyViewModel = hiltViewModel(), navController: NavCon
             .padding(horizontal = 16.dp)
     ) {
 
+        Spacer(Modifier.height(screenHeight * 0.05f))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -146,15 +150,227 @@ fun SignUpScreen(viewModel: MyViewModel = hiltViewModel(), navController: NavCon
 
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = (screenWidth.value * 0.06).dp)
-                .background(Color.White)
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            shape = RoundedCornerShape(12.dp),
+            elevation = CardDefaults.cardElevation(6.dp)
         ) {
-            Box(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).clip(shape = CircleShape),
-                contentAlignment = Alignment.Center
-            ){
-                Image(painter = painterResource(R.drawable.logoforsignup), contentDescription = null)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .size(100.dp) // circle size
+                        .clip(CircleShape)
+                        .background(Color.LightGray) // Optional: background behind image
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logoforsignup),
+                        contentDescription = "Logo",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+
+                Spacer(Modifier.height(screenHeight * 0.02f))
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+                    OutlinedTextField(
+                        value = firstName.value,
+                        onValueChange = {
+                            firstName.value = it
+                        },
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.weight(1f),
+                        placeholder = {
+                            Text(
+                                text = "First Name",
+                                fontSize = (screenWidth.value * 0.03).sp,
+                                color = Color.DarkGray
+                            )
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color.Gray,
+                            unfocusedBorderColor = Color.LightGray,
+                            unfocusedContainerColor = Color.White
+                        )
+
+                    )
+
+                    Spacer(Modifier.width(screenWidth * 0.05f))
+
+                    OutlinedTextField(
+                        value = lastName.value,
+                        onValueChange = {
+                            lastName.value = it
+                        },
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.weight(1f),
+                        placeholder = {
+                            Text(
+                                text = "Last Name",
+                                fontSize = (screenWidth.value * 0.03).sp,
+                                color = Color.DarkGray
+                            )
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color.Gray,
+                            unfocusedBorderColor = Color.LightGray,
+                            unfocusedContainerColor = Color.White
+                        )
+
+                    )
+
+                }
+
+                Spacer(Modifier.height(screenHeight * 0.02f))
+
+                OutlinedTextField(
+                    value = userEmail.value,
+                    onValueChange = {
+                        userEmail.value = it
+                    },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    placeholder = {
+                        Text(
+                            text = "Enter Email",
+                            fontSize = (screenWidth.value * 0.03).sp,
+                            color = Color.DarkGray
+                        )
+                    },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color.Gray,
+                        unfocusedBorderColor = Color.LightGray,
+                        unfocusedContainerColor = Color.White
+                    )
+
+                )
+
+                Spacer(Modifier.height(screenHeight * 0.02f))
+
+                OutlinedTextField(
+                    value = createPassword.value,
+                    onValueChange = {
+                        createPassword.value = it
+                    },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    placeholder = {
+                        Text(
+                            text = "Create Password",
+                            fontSize = (screenWidth.value * 0.03).sp,
+                            color = Color.DarkGray
+                        )
+                    },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color.Gray,
+                        unfocusedBorderColor = Color.LightGray,
+                    )
+
+                )
+                Spacer(Modifier.height(screenHeight * 0.02f))
+
+                OutlinedTextField(
+                    value = confirmPassword.value,
+                    onValueChange = {
+                        confirmPassword.value = it
+                    },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    placeholder = {
+                        Text(
+                            text = "Confirm Password",
+                            fontSize = (screenWidth.value * 0.03).sp,
+                            color = Color.DarkGray
+                        )
+                    },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color.Gray,
+                        unfocusedBorderColor = Color.LightGray,
+                        unfocusedContainerColor = Color.White
+                    )
+
+                )
+
+                Spacer(Modifier.height(screenHeight * 0.03f))
+                Button(
+                    onClick = {
+                        if (firstName.value.isEmpty() || lastName.value.isEmpty() || userEmail.value.isEmpty() || createPassword.value.isEmpty() || confirmPassword.value.isEmpty()) {
+                            Toast.makeText(
+                                context,
+                                "Please fill all the fields",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            if (createPassword.value == confirmPassword.value) {
+                                val userData = UserDataModel(
+                                    firstName = firstName.value,
+                                    lastName = lastName.value,
+                                    email = userEmail.value,
+                                    password = createPassword.value,
+                                )
+                                viewModel.createUser(userData)
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Password does not match",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF037368),
+                        contentColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+
+                    Text(text = "Sign Up", fontSize = 22.sp)
+                }
+
+                Spacer(Modifier.height(screenHeight * 0.02f))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Already have an account?"
+                    )
+                    Spacer(Modifier.width(screenWidth * 0.012f))
+                    Text(
+                        text = "LogIn",
+                        color = Color(0xFF3F55DE),
+                        modifier = Modifier.clickable{
+                            navController.navigate(Routes.LogInScreenRoutes)
+                        }
+                    )
+                }
+
+                Spacer(Modifier.height(screenHeight * 0.05f))
             }
         }
 

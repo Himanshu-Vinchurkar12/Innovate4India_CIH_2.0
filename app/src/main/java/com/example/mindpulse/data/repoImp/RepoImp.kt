@@ -2,6 +2,7 @@ package com.example.mindpulse.data.repoImp
 
 
 
+import android.util.Log
 import com.example.mindpulse.common.ResultState
 import com.example.mindpulse.common.USER_PATH
 import com.example.mindpulse.domain.repo.Repo
@@ -30,6 +31,7 @@ class RepoImp @Inject constructor(
                         it.user!!.uid.toString()
                     ).set(userData).addOnSuccessListener {
                         trySend(ResultState.Success("User Registered Successfully"))
+                        Log.d("TAG ", "LogIn${userData}")
                     }.addOnFailureListener {
                         trySend(ResultState.Error(it.message.toString()))
                     }

@@ -8,8 +8,7 @@ sealed class SubNavigation{
     @Serializable
     object LogInSignUpScreenRoutes : Routes()
 
-    @Serializable
-    object HomeScreenRoutes : Routes()
+
 
 }
 sealed class Routes {
