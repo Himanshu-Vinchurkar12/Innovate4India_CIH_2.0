@@ -1,0 +1,27 @@
+{
+  "node": {
+    "401d8cc29c83b44913f52bb5a0d4b854c5cb4e5c12": {
+      "workers": {
+        "app/dashboard/journal/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/journal/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/personalized-wellness-tips.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/chat-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/dashboard/journal/page": "action-browser"
+      }
+    },
+    "4065044b9e2ef15a3efd376274f67fb197a079fc96": {
+      "workers": {
+        "app/dashboard/journal/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/journal/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/personalized-wellness-tips.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/chat-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/dashboard/journal/page": "action-browser"
+      }
+    }
+  },
+  "edge": {}
+}
